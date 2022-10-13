@@ -11,16 +11,21 @@ board = [
 ]
 
 def print_board(board):
-
-    for i in range(len(board)):
-        if i % 3 == 0 and i != 0:
+    for row in range(len(board)):
+        if row % 3 == 0 and row != 0:
             print ("- - - - - - - - - - - - - ")
 
-        for j in range(len(board[0])):
-            if j % 3 == 0 and j != 0:
+        for col in range(len(board[0])):
+            if col % 3 == 0 and col != 0:
                 print (" | ", end="")
 
-            if j == 8:
-                print (board[i][j])
+            if col == 8:
+                print (board[row][col])
             else:
-                print (str(board[i][j]) + " ", end="")
+                print (str(board[row][col]) + " ", end="")
+
+def find_empty(board):
+    for row in range(len(board)):
+        for col in range(len(board[0])):
+            if board[row][col] == 0:
+                return (row, col)
