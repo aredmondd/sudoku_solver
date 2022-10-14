@@ -32,6 +32,8 @@ def find_empty(board):
             if board[row][col] == 0:
                 return (row, col)
 
+    return None #if board is full
+
 #this is implementing the basic rules of sudoku. checking the row, the col, and the sqaure
 def valid(board, number, position):
     #check the col
@@ -56,3 +58,24 @@ def valid(board, number, position):
 
     #if it's valid
     return True
+
+#recursive function to solve using backtracking
+def solve (board):
+    #base case
+    findOpenSpot = find_empty(board)
+    if not findOpenSpot:
+        return True
+    else:
+        row, col = findOpenSpot
+    
+    for i in range(1,10): #check if it's valid in the board
+        if valid(board, i, (row,col)): #if valid, add
+            board[row][col] = i
+        
+            if solve(board): #do the same thing on this new baord
+                return True
+            
+            board[row][col] = 0; #backtrack, reset the tested one to 0.
+
+    return False
+
