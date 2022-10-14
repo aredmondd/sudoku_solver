@@ -36,10 +36,23 @@ def find_empty(board):
 def valid(board, number, position):
     #check the col
     for i in range(len(board)):
-        if board[i][position[1]] == number and pos[0] != i:
+        if board[i][position[1]] == number and position[0] != i:
             return False
 
     #check the row
     for i in range(len(board[0])):
-        if board[position[0]][i] == number and pos[1] != i:
+        if board[position[0]][i] == number and position[1] != i:
             return False;
+
+    #check the 3 x 3 square
+    square_x = position[1] // 3
+    square_y = position[0] // 3
+
+    #loop through all elements in the 3 x 3 square
+    for i in range(square_y * 3, square_x * 3 + 3):
+        for j in range(square_x * 3, square_y * 3 + 3):
+            if board[i][j] == number and (i,j) != position:
+                return False
+
+    #if it's valid
+    return True
