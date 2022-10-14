@@ -79,3 +79,8 @@ def solve (board):
 
     return False
 
+print("Original Board: ")
+print_board(board)
+solve(board)
+print("\n\nSolved Board:")
+print_board(board)
